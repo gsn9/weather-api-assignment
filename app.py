@@ -1,9 +1,13 @@
 from fastapi import FastAPI
-# from features.weather.routes import weather_router
-# from features.stats.routes import stats_router
-# from db.database import Base, engine
+from features.migrations.routes import router as migrations_router
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 app = FastAPI(title="Weather API")
+
+app.include_router(migrations_router, prefix="/api/migrations", tags=["migrations"])
 
 
 
