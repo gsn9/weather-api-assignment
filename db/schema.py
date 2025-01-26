@@ -26,3 +26,12 @@ weather_stats = Table(
     Column("avg_min_temp", Float, nullable=True),
     Column("total_precipitation", Float, nullable=True),
 )
+
+# Define the crop_yield_data table
+crop_yield_data = Table(
+    "crop_yield_data",
+    metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("year", Integer, nullable=False),
+    Column("yield", Float, nullable=False),  # Crop yield in units (e.g., kg, tons, etc.)
+)

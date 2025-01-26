@@ -1,37 +1,47 @@
+import os
 import asyncio
 from logging.config import fileConfig
-from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy.ext.asyncio import AsyncEngine
+
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine
 from sqlalchemy import pool
 from alembic import context
-from db.schema import metadata
-from dotenv import load_dotenv
-import os
+from dotenv import load_dotenv  # To load the .env file
+from db.schema import metadata  # Import the metadata from schema file
 
-# Load environment variables
+# Load environment variables from the .env file
 load_dotenv()
 
-# Get the DATABASE_URL from environment variables
-database_url = os.getenv("DATABASE_URL")
-if not database_url:
-    raise ValueError("DATABASE_URL environment variable is not set.")
-
-# Set up Alembic configuration
 config = context.config
-config.set_main_option("sqlalchemy.url", database_url)
 
-# Interpret the config file for Python logging
-if config.config_file_name:
+
+
+if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Use metadata for 'autogenerate' support
+
+database_url = os.getenv("DATABASE_URL")
+print(f"Using DATABASE_URL: {database_url}")
+
+if not database_url:
+    raise ValueError("DATABASE_URL environment variable is not set.")
+config.set_main_option("sqlalchemy.url", database_url)
+
 target_metadata = metadata
 
 
-def run_migrations_offline():
-    """Run migrations in 'offline' mode."""
+def run_migrations_offline() -> None:
+    """Run migrations in 'offline' mode.
+
+    This configures the context with just a URL
+    and not an Engine. By skipping the Engine creation,
+    we don't even need a DBAPI to be available.
+
+    # Calls to context.execute() here emit the given string to the
+    script output.
+    """
+    url = config.get_main_option("sqlalchemy.url")
     context.configure(
-        url=database_url,
+        url=url,
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
@@ -43,19 +53,36 @@ def run_migrations_offline():
 
 async def run_migrations_online():
     """Run migrations in 'online' mode."""
+    # Create async engine
     connectable: AsyncEngine = create_async_engine(
         database_url,
         poolclass=pool.NullPool,
+        echo=True,  # Enable SQL debugging logs
     )
 
+    # Connect and configure the context
     async with connectable.connect() as connection:
-        await connection.run_sync(
-            lambda sync_connection: context.configure(
-                connection=sync_connection, target_metadata=target_metadata
+        print(f"Connected to: {connection}")
+        try:
+            await connection.run_sync(
+                lambda sync_connection: context.configure(
+                    connection=sync_connection,
+                    target_metadata=target_metadata,
+                    compare_type=True,  # Compare column types
+                    compare_server_default=True,  # Compare default values
+                    render_as_batch=True,  # Enable batch mode (if needed)
+                    process_bind=True,  # Proper handling of dialect bindings
+                    echo=True,  # Log generated SQL
+                )
             )
-        )
-        await connection.run_sync(lambda _: context.run_migrations())
+            await connection.run_sync(lambda _: context.run_migrations())
 
+            # Explicitly commit the transaction
+            await connection.commit()  # Ensure changes are persisted
+            print("Migrations completed successfully and committed.")
+        except Exception as e:
+            print(f"Migration failed: {e}")
+            raise  # Re-raise exception for debugging/logging
 
 if context.is_offline_mode():
     run_migrations_offline()
