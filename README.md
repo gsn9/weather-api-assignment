@@ -4,6 +4,12 @@ This project is a FastAPI-based Weather API designed to handle weather and crop 
 
 ---
 
+## Live Deployment
+
+The application is live and hosted via Railway.  
+Access it here: [Weather API](https://accomplished-energy-production.up.railway.app/docs)
+
+
 ## Table of Contents
 
 1. [Features](#features)
@@ -112,9 +118,7 @@ weather-api-assignment/
    ```
 
 6. Access the API at:
-   - Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
-   - Redoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
-
+   - Swagger UI: [https://accomplished-energy-production.up.railway.app/docs#/](https://accomplished-energy-production.up.railway.app/docs#/)
 ---
 
 ## Environment Variables
@@ -123,7 +127,6 @@ The application requires the following environment variables:
 
 ```bash
 DATABASE_URL=<your_database_url>
-MIGRATION_SECRET=<your_migration_secret>
 ```
 
 These can be configured in your Railway project or `.env` file locally.
@@ -176,7 +179,11 @@ These can be configured in your Railway project or `.env` file locally.
    ```bash
    bash build_zip.sh
    ```
-2. Deploy the Lambda function and RDS database manually or using Terraform.
+2. Deploy the Lambda function and RDS database manually or using Terraform:
+   - Deploy the Lambda function with the `lambda_function.zip` package.
+   - Configure RDS with a PostgreSQL engine.
+   - Set environment variables in the Lambda function for database connection and secrets.
+   - Ensure the Lambda execution role has the necessary permissions to connect to RDS.
 
 ---
 
@@ -193,6 +200,4 @@ These can be configured in your Railway project or `.env` file locally.
 ## Contributors
 
 - Gavin Nelson
-
----
 

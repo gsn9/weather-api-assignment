@@ -347,3 +347,180 @@
 2025-01-26 21:21:10,693 - ERROR - Exception uploading USC00254985.txt: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/upload_file (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104326890>: Failed to establish a new connection: [Errno 61] Connection refused'))
 2025-01-26 21:21:10,694 - ERROR - Exception uploading USC00259090.txt: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/upload_file (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103b1d190>: Failed to establish a new connection: [Errno 61] Connection refused'))
 2025-01-26 21:21:10,694 - INFO - Upload completed: 0 succeeded, 167 failed.
+2025-01-26 22:43:01,797 - INFO - Starting upload process.
+2025-01-26 22:43:01,798 - INFO - API URL: https://accomplished-energy-production.up.railway.app/api/upload_file
+2025-01-26 22:43:01,798 - INFO - Data Directory: ../data/code-challenge-template/wx_data
+2025-01-26 22:43:01,798 - ERROR - Data directory does not exist: ../data/code-challenge-template/wx_data
+2025-01-26 22:43:01,798 - WARNING - No files found to upload. Exiting.
+2025-01-26 22:43:25,588 - INFO - Starting upload process.
+2025-01-26 22:43:25,588 - INFO - API URL: https://accomplished-energy-production.up.railway.app/api/upload_file
+2025-01-26 22:43:25,588 - INFO - Data Directory: /Users/gavinnelson/coderepos/weather-api-assignment/data/wx_data
+2025-01-26 22:43:25,589 - INFO - Found 167 files to upload in /Users/gavinnelson/coderepos/weather-api-assignment/data/wx_data.
+2025-01-26 22:43:29,272 - INFO - Successfully uploaded USC00257715.txt: {'message': "File 'USC00257715.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 3.14}}
+2025-01-26 22:43:31,864 - INFO - Successfully uploaded USC00113879.txt: {'message': "File 'USC00113879.txt' processed successfully.", 'details': {'total_records': 9074, 'inserted_records': 9074, 'time_taken': 2.06}}
+2025-01-26 22:43:35,020 - INFO - Successfully uploaded USC00127935.txt: {'message': "File 'USC00127935.txt' processed successfully.", 'details': {'total_records': 10380, 'inserted_records': 10380, 'time_taken': 2.64}}
+2025-01-26 22:43:37,846 - INFO - Successfully uploaded USC00112193.txt: {'message': "File 'USC00112193.txt' processed successfully.", 'details': {'total_records': 10653, 'inserted_records': 10653, 'time_taken': 2.38}}
+2025-01-26 22:43:41,190 - INFO - Successfully uploaded USC00250640.txt: {'message': "File 'USC00250640.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.93}}
+2025-01-26 22:43:44,470 - INFO - Successfully uploaded USC00257070.txt: {'message': "File 'USC00257070.txt' processed successfully.", 'details': {'total_records': 10926, 'inserted_records': 10926, 'time_taken': 2.91}}
+2025-01-26 22:43:47,658 - INFO - Successfully uploaded USC00114442.txt: {'message': "File 'USC00114442.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.56}}
+2025-01-26 22:43:51,093 - INFO - Successfully uploaded USC00115833.txt: {'message': "File 'USC00115833.txt' processed successfully.", 'details': {'total_records': 10866, 'inserted_records': 10866, 'time_taken': 2.99}}
+2025-01-26 22:43:54,027 - INFO - Successfully uploaded USC00130133.txt: {'message': "File 'USC00130133.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.48}}
+2025-01-26 22:43:57,096 - INFO - Successfully uploaded USC00132724.txt: {'message': "File 'USC00132724.txt' processed successfully.", 'details': {'total_records': 10836, 'inserted_records': 10836, 'time_taken': 2.63}}
+2025-01-26 22:43:59,905 - INFO - Successfully uploaded USC00250130.txt: {'message': "File 'USC00250130.txt' processed successfully.", 'details': {'total_records': 9587, 'inserted_records': 9587, 'time_taken': 2.39}}
+2025-01-26 22:44:03,078 - INFO - Successfully uploaded USC00256970.txt: {'message': "File 'USC00256970.txt' processed successfully.", 'details': {'total_records': 10017, 'inserted_records': 10017, 'time_taken': 2.58}}
+2025-01-26 22:44:06,265 - INFO - Successfully uploaded USC00116446.txt: {'message': "File 'USC00116446.txt' processed successfully.", 'details': {'total_records': 10654, 'inserted_records': 10654, 'time_taken': 2.76}}
+2025-01-26 22:44:09,541 - INFO - Successfully uploaded USC00253175.txt: {'message': "File 'USC00253175.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.81}}
+2025-01-26 22:44:12,796 - INFO - Successfully uploaded USC00129113.txt: {'message': "File 'USC00129113.txt' processed successfully.", 'details': {'total_records': 10927, 'inserted_records': 10927, 'time_taken': 2.7}}
+2025-01-26 22:44:16,255 - INFO - Successfully uploaded USC00134142.txt: {'message': "File 'USC00134142.txt' processed successfully.", 'details': {'total_records': 10807, 'inserted_records': 10807, 'time_taken': 2.94}}
+2025-01-26 22:44:18,131 - INFO - Successfully uploaded USC00121229.txt: {'message': "File 'USC00121229.txt' processed successfully.", 'details': {'total_records': 6087, 'inserted_records': 6087, 'time_taken': 1.45}}
+2025-01-26 22:44:21,476 - INFO - Successfully uploaded USC00116526.txt: {'message': "File 'USC00116526.txt' processed successfully.", 'details': {'total_records': 10926, 'inserted_records': 10926, 'time_taken': 2.94}}
+2025-01-26 22:44:27,092 - INFO - Successfully uploaded USC00259510.txt: {'message': "File 'USC00259510.txt' processed successfully.", 'details': {'total_records': 8735, 'inserted_records': 8735, 'time_taken': 5.21}}
+2025-01-26 22:44:29,931 - INFO - Successfully uploaded USC00255470.txt: {'message': "File 'USC00255470.txt' processed successfully.", 'details': {'total_records': 8489, 'inserted_records': 8489, 'time_taken': 2.42}}
+2025-01-26 22:44:33,023 - INFO - Successfully uploaded USC00257515.txt: {'message': "File 'USC00257515.txt' processed successfully.", 'details': {'total_records': 10075, 'inserted_records': 10075, 'time_taken': 2.64}}
+2025-01-26 22:44:36,454 - INFO - Successfully uploaded USC00258395.txt: {'message': "File 'USC00258395.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.99}}
+2025-01-26 22:44:39,399 - INFO - Successfully uploaded USC00338313.txt: {'message': "File 'USC00338313.txt' processed successfully.", 'details': {'total_records': 9862, 'inserted_records': 9862, 'time_taken': 2.42}}
+2025-01-26 22:44:42,779 - INFO - Successfully uploaded USC00131402.txt: {'message': "File 'USC00131402.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.8}}
+2025-01-26 22:44:46,164 - INFO - Successfully uploaded USC00118916.txt: {'message': "File 'USC00118916.txt' processed successfully.", 'details': {'total_records': 10865, 'inserted_records': 10865, 'time_taken': 2.98}}
+2025-01-26 22:44:49,343 - INFO - Successfully uploaded USC00124181.txt: {'message': "File 'USC00124181.txt' processed successfully.", 'details': {'total_records': 10681, 'inserted_records': 10681, 'time_taken': 2.72}}
+2025-01-26 22:44:52,332 - INFO - Successfully uploaded USC00128036.txt: {'message': "File 'USC00128036.txt' processed successfully.", 'details': {'total_records': 10835, 'inserted_records': 10835, 'time_taken': 2.55}}
+2025-01-26 22:44:55,714 - INFO - Successfully uploaded USC00126580.txt: {'message': "File 'USC00126580.txt' processed successfully.", 'details': {'total_records': 10899, 'inserted_records': 10899, 'time_taken': 2.86}}
+2025-01-26 22:44:58,991 - INFO - Successfully uploaded USC00129670.txt: {'message': "File 'USC00129670.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.74}}
+2025-01-26 22:45:02,472 - INFO - Successfully uploaded USC00115943.txt: {'message': "File 'USC00115943.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.8}}
+2025-01-26 22:45:04,091 - INFO - Successfully uploaded USC00124008.txt: {'message': "File 'USC00124008.txt' processed successfully.", 'details': {'total_records': 5476, 'inserted_records': 5476, 'time_taken': 1.21}}
+2025-01-26 22:45:07,299 - INFO - Successfully uploaded USC00116910.txt: {'message': "File 'USC00116910.txt' processed successfully.", 'details': {'total_records': 10898, 'inserted_records': 10898, 'time_taken': 2.66}}
+2025-01-26 22:45:10,227 - INFO - Successfully uploaded USC00114108.txt: {'message': "File 'USC00114108.txt' processed successfully.", 'details': {'total_records': 10896, 'inserted_records': 10896, 'time_taken': 2.4}}
+2025-01-26 22:45:13,600 - INFO - Successfully uploaded USC00127298.txt: {'message': "File 'USC00127298.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.94}}
+2025-01-26 22:45:16,450 - INFO - Successfully uploaded USC00110187.txt: {'message': "File 'USC00110187.txt' processed successfully.", 'details': {'total_records': 10407, 'inserted_records': 10407, 'time_taken': 2.4}}
+2025-01-26 22:45:20,290 - INFO - Successfully uploaded USC00253365.txt: {'message': "File 'USC00253365.txt' processed successfully.", 'details': {'total_records': 10926, 'inserted_records': 10926, 'time_taken': 3.28}}
+2025-01-26 22:45:23,024 - INFO - Successfully uploaded USC00251200.txt: {'message': "File 'USC00251200.txt' processed successfully.", 'details': {'total_records': 10805, 'inserted_records': 10805, 'time_taken': 2.26}}
+2025-01-26 22:45:26,300 - INFO - Successfully uploaded USC00112140.txt: {'message': "File 'USC00112140.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.79}}
+2025-01-26 22:45:29,360 - INFO - Successfully uploaded USC00253615.txt: {'message': "File 'USC00253615.txt' processed successfully.", 'details': {'total_records': 10927, 'inserted_records': 10927, 'time_taken': 2.55}}
+2025-01-26 22:45:32,806 - INFO - Successfully uploaded USC00255310.txt: {'message': "File 'USC00255310.txt' processed successfully.", 'details': {'total_records': 10926, 'inserted_records': 10926, 'time_taken': 2.97}}
+2025-01-26 22:45:37,519 - INFO - Successfully uploaded USC00132864.txt: {'message': "File 'USC00132864.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 4.2}}
+2025-01-26 22:45:39,909 - INFO - Successfully uploaded USC00129511.txt: {'message': "File 'USC00129511.txt' processed successfully.", 'details': {'total_records': 6849, 'inserted_records': 6849, 'time_taken': 1.91}}
+2025-01-26 22:45:43,123 - INFO - Successfully uploaded USC00118740.txt: {'message': "File 'USC00118740.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.7}}
+2025-01-26 22:45:46,400 - INFO - Successfully uploaded USC00333780.txt: {'message': "File 'USC00333780.txt' processed successfully.", 'details': {'total_records': 10927, 'inserted_records': 10927, 'time_taken': 2.72}}
+2025-01-26 22:45:49,575 - INFO - Successfully uploaded USC00254900.txt: {'message': "File 'USC00254900.txt' processed successfully.", 'details': {'total_records': 10927, 'inserted_records': 10927, 'time_taken': 2.6}}
+2025-01-26 22:45:54,458 - INFO - Successfully uploaded USC00255565.txt: {'message': "File 'USC00255565.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 4.43}}
+2025-01-26 22:45:57,562 - INFO - Successfully uploaded USC00250435.txt: {'message': "File 'USC00250435.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.54}}
+2025-01-26 22:46:00,778 - INFO - Successfully uploaded USC00252020.txt: {'message': "File 'USC00252020.txt' processed successfully.", 'details': {'total_records': 10746, 'inserted_records': 10746, 'time_taken': 2.75}}
+2025-01-26 22:46:03,815 - INFO - Successfully uploaded USC00138296.txt: {'message': "File 'USC00138296.txt' processed successfully.", 'details': {'total_records': 10837, 'inserted_records': 10837, 'time_taken': 2.53}}
+2025-01-26 22:46:06,937 - INFO - Successfully uploaded USC00132977.txt: {'message': "File 'USC00132977.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.56}}
+2025-01-26 22:46:10,270 - INFO - Successfully uploaded USC00118147.txt: {'message': "File 'USC00118147.txt' processed successfully.", 'details': {'total_records': 9896, 'inserted_records': 9896, 'time_taken': 2.88}}
+2025-01-26 22:46:14,029 - INFO - Successfully uploaded USC00250622.txt: {'message': "File 'USC00250622.txt' processed successfully.", 'details': {'total_records': 10896, 'inserted_records': 10896, 'time_taken': 3.3}}
+2025-01-26 22:46:17,269 - INFO - Successfully uploaded USC00331592.txt: {'message': "File 'USC00331592.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.66}}
+2025-01-26 22:46:20,603 - INFO - Successfully uploaded USC00258915.txt: {'message': "File 'USC00258915.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.7}}
+2025-01-26 22:46:24,071 - INFO - Successfully uploaded USC00250420.txt: {'message': "File 'USC00250420.txt' processed successfully.", 'details': {'total_records': 10379, 'inserted_records': 10379, 'time_taken': 2.35}}
+2025-01-26 22:46:26,869 - INFO - Successfully uploaded USC00338830.txt: {'message': "File 'USC00338830.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.3}}
+2025-01-26 22:46:29,434 - INFO - Successfully uploaded USC00115515.txt: {'message': "File 'USC00115515.txt' processed successfully.", 'details': {'total_records': 6271, 'inserted_records': 6271, 'time_taken': 2.17}}
+2025-01-26 22:46:32,502 - INFO - Successfully uploaded USC00120784.txt: {'message': "File 'USC00120784.txt' processed successfully.", 'details': {'total_records': 10897, 'inserted_records': 10897, 'time_taken': 2.62}}
+2025-01-26 22:46:35,734 - INFO - Successfully uploaded USC00112483.txt: {'message': "File 'USC00112483.txt' processed successfully.", 'details': {'total_records': 10898, 'inserted_records': 10898, 'time_taken': 2.68}}
+2025-01-26 22:46:38,851 - INFO - Successfully uploaded USC00332098.txt: {'message': "File 'USC00332098.txt' processed successfully.", 'details': {'total_records': 10927, 'inserted_records': 10927, 'time_taken': 2.68}}
+2025-01-26 22:46:41,861 - INFO - Successfully uploaded USC00116579.txt: {'message': "File 'USC00116579.txt' processed successfully.", 'details': {'total_records': 10407, 'inserted_records': 10407, 'time_taken': 2.57}}
+2025-01-26 22:46:45,475 - INFO - Successfully uploaded USC00137979.txt: {'message': "File 'USC00137979.txt' processed successfully.", 'details': {'total_records': 10926, 'inserted_records': 10926, 'time_taken': 3.09}}
+2025-01-26 22:46:49,041 - INFO - Successfully uploaded USC00258480.txt: {'message': "File 'USC00258480.txt' processed successfully.", 'details': {'total_records': 10808, 'inserted_records': 10808, 'time_taken': 3.12}}
+2025-01-26 22:46:53,372 - INFO - Successfully uploaded USC00258133.txt: {'message': "File 'USC00258133.txt' processed successfully.", 'details': {'total_records': 9225, 'inserted_records': 9225, 'time_taken': 3.85}}
+2025-01-26 22:46:57,132 - INFO - Successfully uploaded USC00115712.txt: {'message': "File 'USC00115712.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 3.23}}
+2025-01-26 22:47:00,111 - INFO - Successfully uploaded USC00331152.txt: {'message': "File 'USC00331152.txt' processed successfully.", 'details': {'total_records': 8886, 'inserted_records': 8886, 'time_taken': 2.45}}
+2025-01-26 22:47:04,123 - INFO - Successfully uploaded USC00335297.txt: {'message': "File 'USC00335297.txt' processed successfully.", 'details': {'total_records': 9557, 'inserted_records': 9557, 'time_taken': 3.54}}
+2025-01-26 22:47:10,123 - INFO - Successfully uploaded USC00334189.txt: {'message': "File 'USC00334189.txt' processed successfully.", 'details': {'total_records': 10834, 'inserted_records': 10834, 'time_taken': 5.55}}
+2025-01-26 22:47:13,647 - INFO - Successfully uploaded USC00253660.txt: {'message': "File 'USC00253660.txt' processed successfully.", 'details': {'total_records': 10896, 'inserted_records': 10896, 'time_taken': 2.99}}
+2025-01-26 22:47:16,915 - INFO - Successfully uploaded USC00137161.txt: {'message': "File 'USC00137161.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.8}}
+2025-01-26 22:47:19,844 - INFO - Successfully uploaded USC00336600.txt: {'message': "File 'USC00336600.txt' processed successfully.", 'details': {'total_records': 10561, 'inserted_records': 10561, 'time_taken': 2.45}}
+2025-01-26 22:47:22,575 - INFO - Successfully uploaded USC00253715.txt: {'message': "File 'USC00253715.txt' processed successfully.", 'details': {'total_records': 8521, 'inserted_records': 8521, 'time_taken': 2.28}}
+2025-01-26 22:47:26,651 - INFO - Successfully uploaded USC00338822.txt: {'message': "File 'USC00338822.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 3.54}}
+2025-01-26 22:47:29,857 - INFO - Successfully uploaded USC00256135.txt: {'message': "File 'USC00256135.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.74}}
+2025-01-26 22:47:33,080 - INFO - Successfully uploaded USC00254440.txt: {'message': "File 'USC00254440.txt' processed successfully.", 'details': {'total_records': 10866, 'inserted_records': 10866, 'time_taken': 2.75}}
+2025-01-26 22:47:36,096 - INFO - Successfully uploaded USC00132999.txt: {'message': "File 'USC00132999.txt' processed successfully.", 'details': {'total_records': 10804, 'inserted_records': 10804, 'time_taken': 2.57}}
+2025-01-26 22:47:39,247 - INFO - Successfully uploaded USC00335041.txt: {'message': "File 'USC00335041.txt' processed successfully.", 'details': {'total_records': 10896, 'inserted_records': 10896, 'time_taken': 2.64}}
+2025-01-26 22:47:42,050 - INFO - Successfully uploaded USC00331541.txt: {'message': "File 'USC00331541.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.32}}
+2025-01-26 22:47:45,534 - INFO - Successfully uploaded USC00135952.txt: {'message': "File 'USC00135952.txt' processed successfully.", 'details': {'total_records': 10899, 'inserted_records': 10899, 'time_taken': 3.01}}
+2025-01-26 22:47:48,440 - INFO - Successfully uploaded USC00256040.txt: {'message': "File 'USC00256040.txt' processed successfully.", 'details': {'total_records': 9009, 'inserted_records': 9009, 'time_taken': 2.45}}
+2025-01-26 22:47:52,546 - INFO - Successfully uploaded USC00134735.txt: {'message': "File 'USC00134735.txt' processed successfully.", 'details': {'total_records': 10928, 'inserted_records': 10928, 'time_taken': 3.56}}
+2025-01-26 22:47:55,836 - INFO - Successfully uploaded USC00123513.txt: {'message': "File 'USC00123513.txt' processed successfully.", 'details': {'total_records': 10347, 'inserted_records': 10347, 'time_taken': 2.71}}
+2025-01-26 22:47:58,889 - INFO - Successfully uploaded USC00129557.txt: {'message': "File 'USC00129557.txt' processed successfully.", 'details': {'total_records': 10957, 'inserted_records': 10957, 'time_taken': 2.6}}
+2025-01-26 22:48:02,799 - INFO - Successfully uploaded USC00114198.txt: {'message': "File 'USC00114198.txt' processed successfully.", 'details': {'total_records': 10926, 'inserted_records': 10926, 'time_taken': 3.41}}
+2025-01-26 22:48:06,504 - INFO - Successfully uploaded USC00252820.txt: {'message': "File 'USC00252820.txt' processed successfully.", 'details': {'total_records': 10896, 'inserted_records': 10896, 'time_taken': 3.28}}
+2025-01-26 22:48:10,540 - INFO - Successfully uploaded USC00120177.txt: {'message': "File 'USC00120177.txt' processed successfully.", 'details': {'total_records': 10837, 'inserted_records': 10837, 'time_taken': 3.57}}
+2025-01-26 22:48:14,394 - INFO - Successfully uploaded USC00134894.txt: {'message': "File 'USC00134894.txt' processed successfully.", 'details': {'total_records': 10867, 'inserted_records': 10867, 'time_taken': 3.44}}
+2025-01-26 22:48:18,143 - INFO - Successfully uploaded USC00130600.txt: {'message': "File 'USC00130600.txt' processed successfully.", 'details': {'total_records': 10928, 'inserted_records': 10928, 'time_taken': 3.3}}
+2025-01-26 22:48:21,268 - ERROR - Failed to upload USC00137147.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:22,252 - ERROR - Failed to upload USC00116610.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:23,065 - ERROR - Failed to upload USC00126705.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:23,844 - ERROR - Failed to upload USC00339312.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:24,754 - ERROR - Failed to upload USC00336196.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:25,590 - ERROR - Failed to upload USC00134063.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:26,379 - ERROR - Failed to upload USC00332119.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:27,375 - ERROR - Failed to upload USC00120200.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:28,297 - ERROR - Failed to upload USC00258465.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:29,116 - ERROR - Failed to upload USC00115326.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:30,041 - ERROR - Failed to upload USC00338769.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:30,857 - ERROR - Failed to upload USC00116558.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:31,780 - ERROR - Failed to upload USC00115079.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:33,212 - ERROR - Failed to upload USC00253735.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:34,031 - ERROR - Failed to upload USC00333758.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:35,772 - ERROR - Failed to upload USC00335315.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:36,491 - ERROR - Failed to upload USC00252205.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:37,345 - ERROR - Failed to upload USC00125237.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:38,335 - ERROR - Failed to upload USC00333375.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:39,135 - ERROR - Failed to upload USC00338552.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:39,972 - ERROR - Failed to upload USC00132789.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:40,798 - ERROR - Failed to upload USC00250375.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:41,916 - ERROR - Failed to upload USC00138688.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:43,649 - ERROR - Failed to upload USC00115901.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:44,542 - ERROR - Failed to upload USC00122149.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:45,295 - ERROR - Failed to upload USC00114823.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:46,116 - ERROR - Failed to upload USC00110338.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:46,968 - ERROR - Failed to upload USC00121873.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:47,835 - ERROR - Failed to upload USC00123527.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:48,832 - ERROR - Failed to upload USC00127755.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:50,559 - ERROR - Failed to upload USC00111436.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:51,331 - ERROR - Failed to upload USC00110072.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:52,191 - ERROR - Failed to upload USC00131533.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:53,078 - ERROR - Failed to upload USC00135769.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:53,871 - ERROR - Failed to upload USC00135796.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:54,921 - ERROR - Failed to upload USC00119241.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:56,648 - ERROR - Failed to upload USC00336781.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:57,514 - ERROR - Failed to upload USC00254110.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:58,260 - ERROR - Failed to upload USC00253910.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:48:59,140 - ERROR - Failed to upload USC00253630.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:00,126 - ERROR - Failed to upload USC00126001.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:00,885 - ERROR - Failed to upload USC00255080.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:04,572 - ERROR - Failed to upload USC00117551.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:05,475 - ERROR - Failed to upload USC00121747.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:06,392 - ERROR - Failed to upload USC00127875.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:07,303 - ERROR - Failed to upload USC00127646.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:08,149 - ERROR - Failed to upload USC00111280.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:09,769 - ERROR - Failed to upload USC00121425.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:10,532 - ERROR - Failed to upload USC00129253.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:11,305 - ERROR - Failed to upload USC00250070.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:12,125 - ERROR - Failed to upload USC00252840.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:13,046 - ERROR - Failed to upload USC00116738.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:13,602 - ERROR - Failed to upload USC00253035.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:14,564 - ERROR - Failed to upload USC00130112.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:16,426 - ERROR - Failed to upload USC00338534.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:17,261 - ERROR - Failed to upload USC00115768.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:18,166 - ERROR - Failed to upload USC00131635.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:19,105 - ERROR - Failed to upload USC00251145.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:19,916 - ERROR - Failed to upload USC00252100.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:20,934 - ERROR - Failed to upload USC00119354.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:22,672 - ERROR - Failed to upload USC00113335.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:23,798 - ERROR - Failed to upload USC00256570.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:24,621 - ERROR - Failed to upload USC00124837.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:25,450 - ERROR - Failed to upload USC00112348.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:26,421 - ERROR - Failed to upload USC00332791.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:27,223 - ERROR - Failed to upload USC00336118.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:28,101 - ERROR - Failed to upload USC00129080.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:29,890 - ERROR - Failed to upload USC00127522.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:30,660 - ERROR - Failed to upload USC00125337.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:31,479 - ERROR - Failed to upload USC00123418.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:32,395 - ERROR - Failed to upload USC00127482.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:33,322 - ERROR - Failed to upload USC00121030.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:34,172 - ERROR - Failed to upload USC00253185.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:34,952 - ERROR - Failed to upload USC00331072.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:35,783 - ERROR - Failed to upload USC00120676.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:37,213 - ERROR - Failed to upload USC00127125.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:37,933 - ERROR - Failed to upload USC00331890.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:38,647 - ERROR - Failed to upload USC00254985.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:39,426 - ERROR - Failed to upload USC00259090.txt: 500 - {"detail":"Failed to process the file."}
+2025-01-26 22:49:39,426 - INFO - Upload completed: 88 succeeded, 79 failed.
