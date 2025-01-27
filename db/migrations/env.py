@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine
 from sqlalchemy import pool
 from alembic import context
 from dotenv import load_dotenv  # To load the .env file
-from db.schema import metadata  # Import the metadata from schema file
+from db.schema import Base  # Import the Base from your schema
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -26,7 +26,7 @@ if not database_url:
     raise ValueError("DATABASE_URL environment variable is not set.")
 config.set_main_option("sqlalchemy.url", database_url)
 
-target_metadata = metadata
+target_metadata = Base.metadata
 
 
 def run_migrations_offline() -> None:
@@ -72,7 +72,7 @@ async def run_migrations_online():
                     compare_server_default=True,  # Compare default values
                     render_as_batch=True,  # Enable batch mode (if needed)
                     process_bind=True,  # Proper handling of dialect bindings
-                    echo=True,  # Log generated SQL
+                    echo=False,  # Log generated SQL
                 )
             )
             await connection.run_sync(lambda _: context.run_migrations())

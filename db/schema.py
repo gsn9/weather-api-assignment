@@ -1,37 +1,55 @@
-from sqlalchemy import Column, Integer, String, Float, Date, MetaData, Table
+from sqlalchemy import Column, Integer, String, Float, Date, UniqueConstraint
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
-# Define metadata
-metadata = MetaData()
+Base = declarative_base()
 
-# Define the weather_data table
-weather_data = Table(
-    "weather_data",
-    metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("station_id", String, nullable=False),
-    Column("date", Date, nullable=False),
-    Column("max_temp", Float, nullable=True),  # Max temperature in Celsius
-    Column("min_temp", Float, nullable=True),  # Min temperature in Celsius
-    Column("precipitation", Float, nullable=True),  # Precipitation in cm
-)
 
-# Define the weather_stats table
-weather_stats = Table(
-    "weather_stats",
-    metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("station_id", String, nullable=False),
-    Column("year", Integer, nullable=False),
-    Column("avg_max_temp", Float, nullable=True),
-    Column("avg_min_temp", Float, nullable=True),
-    Column("total_precipitation", Float, nullable=True),
-)
+# Define the WeatherData ORM class
+class WeatherData(Base):
+    __tablename__ = 'weather_data'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    station_id = Column(String, nullable=False)
+    date = Column(Date, nullable=False)
+    max_temp = Column(Float, nullable=True)  # Max temperature in Celsius
+    min_temp = Column(Float, nullable=True)  # Min temperature in Celsius
+    precipitation = Column(Float, nullable=True)  # Precipitation in cm
+    
+    __table_args__ = (
+        UniqueConstraint('station_id', 'date', name='uq_weather_station_date'),
+    )
+    
+    # Optional: Relationship to WeatherStats
+    stats = relationship("WeatherStats", back_populates="weather_data", cascade="all, delete-orphan")
 
-# Define the crop_yield_data table
-crop_yield_data = Table(
-    "crop_yield_data",
-    metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("year", Integer, nullable=False),
-    Column("yield", Float, nullable=False),  # Crop yield in units (e.g., kg, tons, etc.)
-)
+# Define the WeatherStats ORM class
+class WeatherStats(Base):
+    __tablename__ = 'weather_stats'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    station_id = Column(String, nullable=False)
+    year = Column(Integer, nullable=False)
+    avg_max_temp = Column(Float, nullable=True)
+    avg_min_temp = Column(Float, nullable=True)
+    total_precipitation = Column(Float, nullable=True)
+    
+    __table_args__ = (
+        UniqueConstraint('station_id', 'year', name='uq_weatherstats_station_year'),
+    )
+    
+    # Optional: Relationship to WeatherData
+    weather_data = relationship("WeatherData", back_populates="stats")
+
+# Define the CropYieldData ORM class
+class CropYieldData(Base):
+    __tablename__ = 'crop_yield_data'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    station_id = Column(String, nullable=False)  # Assuming crop yield is linked to a station
+    year = Column(Integer, nullable=False)
+    yield_value = Column(Float, nullable=False)  # Renamed from 'yield' to 'yield_value' to avoid conflict with Python keyword
+    
+    __table_args__ = (
+        UniqueConstraint('station_id', 'year', name='uq_cropyield_station_year'),
+    )

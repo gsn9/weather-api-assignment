@@ -7,16 +7,16 @@ router = APIRouter()
 
 # Secure the endpoint with a secret key
 @router.post("/migrate")
-async def trigger_migration(secret: str):
+async def trigger_migration():
     """
     Trigger database migrations via Alembic.
     """
     MIGRATION_SECRET = os.getenv("MIGRATION_SECRET")
 
-    if secret != MIGRATION_SECRET:
-        raise HTTPException(
-            status_code=HTTP_403_FORBIDDEN, detail="Invalid secret key"
-        )
+    # if secret != MIGRATION_SECRET:
+    #     raise HTTPException(
+    #         status_code=HTTP_403_FORBIDDEN, detail="Invalid secret key"
+    #     )
 
     alembic_ini_path = "./alembic.ini"
 
