@@ -57,12 +57,13 @@ class CropYieldETL(ETLInterface):
         Returns:
             pd.DataFrame: Cleaned crop yield data without duplicates.
         """
+
         logging.info("Transforming crop yield data.")
         # Ensure correct data types
-        data["year"] = pd.to_numeric(data["year"], errors='coerce').astype('Int64')
-        data["yield_value"] = pd.to_numeric(data["yield_value"], errors='coerce')
+        data["year"] = pd.to_numeric(data["year"], errors="coerce").astype("int64")
+        data["yield_value"] = pd.to_numeric(data["yield_value"], errors="coerce").astype("float64")
 
-        # Drop rows where all elements are NaN
+        # Drop rows with all NaN values
         data.dropna(how="all", inplace=True)
 
         # Remove duplicate records based on 'station_id' and 'year'
@@ -70,6 +71,7 @@ class CropYieldETL(ETLInterface):
 
         logging.info(f"Transformed crop yield data contains {len(data)} records after cleaning.")
         return data
+
 
     async def load(self, data: pd.DataFrame):
         """
