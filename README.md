@@ -6,6 +6,8 @@ This project is a FastAPI-based Weather API designed to handle weather and crop 
 
 ## Live Deployment
 
+
+
 The application is live and hosted via Railway.  
 Access it here: [Weather API](https://accomplished-energy-production.up.railway.app/docs)
 
