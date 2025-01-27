@@ -1,22 +1,37 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 from starlette.status import HTTP_403_FORBIDDEN
 from app.db.migration_runner import run_migrations
 import os
 
 router = APIRouter()
 
-# Secure the endpoint with a secret key
-@router.post("/migrate")
+# Define a response model for the migration endpoint
+class MigrationResponse(BaseModel):
+    message: str
+
+    class Config:
+        schema_extra = {
+            "example": {"message": "Migrations ran successfully."}
+        }
+
+@router.post(
+    "/migrate",
+    response_model=MigrationResponse,
+    summary="Run database migrations",
+    description=(
+        "Trigger Alembic migrations to apply changes to the database schema. "
+    ),
+    tags=["Database Management"],
+    responses={
+        200: {"description": "Migrations ran successfully."},
+        500: {"description": "Failed to run migrations."},
+    },
+)
 async def trigger_migration():
     """
     Trigger database migrations via Alembic.
     """
-    MIGRATION_SECRET = os.getenv("MIGRATION_SECRET")
-
-    # if secret != MIGRATION_SECRET:
-    #     raise HTTPException(
-    #         status_code=HTTP_403_FORBIDDEN, detail="Invalid secret key"
-    #     )
 
     alembic_ini_path = "./alembic.ini"
 
