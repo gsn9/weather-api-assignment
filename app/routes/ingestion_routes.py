@@ -28,6 +28,7 @@ class FileUploadResponse(BaseModel):
             }
         }
 
+
 @router.post(
     "/upload_file",
     response_model=FileUploadResponse,

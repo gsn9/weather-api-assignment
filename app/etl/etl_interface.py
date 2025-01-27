@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import pandas as pd
 
+
 class ETLInterface(ABC):
     """
     Abstract base class for ETL processes.
@@ -63,6 +64,6 @@ class ETLInterface(ABC):
 
         feedback = {
             "total_records": len(raw_data),
-            "inserted_records": inserted_records
+            "inserted_records": inserted_records,
         }
         return feedback

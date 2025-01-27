@@ -12,20 +12,18 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 # Ensure DATABASE_URL uses the asyncpg driver
 # Example: postgresql+asyncpg://root:root@localhost:5432/local_db
 if not DATABASE_URL.startswith("postgresql+asyncpg://"):
-    raise ValueError("DATABASE_URL must use the 'postgresql+asyncpg://' scheme for async support.")
+    raise ValueError(
+        "DATABASE_URL must use the 'postgresql+asyncpg://' scheme for async support."
+    )
 
 # Create an asynchronous engine
 engine = create_async_engine(
-    DATABASE_URL,
-    echo=False,  # Set to False in production
-    future=True
+    DATABASE_URL, echo=False, future=True  # Set to False in production
 )
 
 # Create an asynchronous sessionmaker
 AsyncSessionLocal = sessionmaker(
-    bind=engine,
-    class_=AsyncSession,
-    expire_on_commit=False
+    bind=engine, class_=AsyncSession, expire_on_commit=False
 )
 
 # Dependency to provide an AsyncSession

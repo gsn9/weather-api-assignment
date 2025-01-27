@@ -8,41 +8,52 @@ import sys
 
 # Configure logging
 logging.basicConfig(
-    filename='scripts/upload_all_files.log',
+    filename="scripts/upload_all_files.log",
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
 # Configuration
 DEFAULT_API_URL = "http://localhost:8000/api/upload_file"  # Update if different
-DEFAULT_DATA_DIR = Path("../data/code-challenge-template/wx_data")  # Adjust the path as needed
-ALLOWED_EXTENSIONS = {'.txt'}
+DEFAULT_DATA_DIR = Path(
+    "../data/code-challenge-template/wx_data"
+)  # Adjust the path as needed
+ALLOWED_EXTENSIONS = {".txt"}
+
 
 def get_all_files(directory: Path, allowed_extensions: set) -> List[Path]:
     """Retrieve all files with allowed extensions from the specified directory."""
     if not directory.exists():
         logging.error(f"Data directory does not exist: {directory}")
         return []
-    files = [file for file in directory.iterdir() if file.suffix in allowed_extensions and file.is_file()]
+    files = [
+        file
+        for file in directory.iterdir()
+        if file.suffix in allowed_extensions and file.is_file()
+    ]
     logging.info(f"Found {len(files)} files to upload in {directory}.")
     return files
+
 
 def upload_file(file_path: Path, api_url: str) -> bool:
     """Upload a single file to the API."""
     try:
-        with open(file_path, 'rb') as f:
-            files = {'file': (file_path.name, f, 'text/plain')}
+        with open(file_path, "rb") as f:
+            files = {"file": (file_path.name, f, "text/plain")}
             response = requests.post(api_url, files=files)
-        
+
         if response.status_code == 200:
             logging.info(f"Successfully uploaded {file_path.name}: {response.json()}")
             return True
         else:
-            logging.error(f"Failed to upload {file_path.name}: {response.status_code} - {response.text}")
+            logging.error(
+                f"Failed to upload {file_path.name}: {response.status_code} - {response.text}"
+            )
             return False
     except Exception as e:
         logging.error(f"Exception uploading {file_path.name}: {e}")
         return False
+
 
 def main(api_url: Optional[str] = None, data_dir: Optional[str] = None):
     """Main function to upload all files."""
@@ -69,22 +80,27 @@ def main(api_url: Optional[str] = None, data_dir: Optional[str] = None):
             failure += 1
 
     logging.info(f"Upload completed: {success} succeeded, {failure} failed.")
-    print(f"Upload completed: {success} succeeded, {failure} failed. Check 'upload_all_files.log' for details.")
+    print(
+        f"Upload completed: {success} succeeded, {failure} failed. Check 'upload_all_files.log' for details."
+    )
+
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Upload all weather data files to the API.")
+    parser = argparse.ArgumentParser(
+        description="Upload all weather data files to the API."
+    )
     parser.add_argument(
         "--api-url",
         type=str,
         default=DEFAULT_API_URL,
-        help="The API endpoint URL for uploading files (default: http://localhost:8000/api/upload_file)"
+        help="The API endpoint URL for uploading files (default: http://localhost:8000/api/upload_file)",
     )
     parser.add_argument(
         "--data-dir",
         type=str,
         default=str(DEFAULT_DATA_DIR),
-        help="The directory containing the data files to upload (default: ../data/code-challenge-template/wx_data)"
+        help="The directory containing the data files to upload (default: ../data/code-challenge-template/wx_data)",
     )
-    
+
     args = parser.parse_args()
     main(api_url=args.api_url, data_dir=args.data_dir)

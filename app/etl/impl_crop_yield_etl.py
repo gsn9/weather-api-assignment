@@ -6,6 +6,7 @@ from app.etl.etl_interface import ETLInterface
 from app.db.schema import CropYieldData
 import time
 
+
 class CropYieldETL(ETLInterface):
     def __init__(self, session: AsyncSession, batch_size: int = 5000):
         """
@@ -33,14 +34,11 @@ class CropYieldETL(ETLInterface):
         buffer = pd.io.common.BytesIO(file_content)
         df = pd.read_csv(
             buffer,
-            sep="\t",                # Tab-separated values
-            header=None,             # No headers in the file
+            sep="\t",  # Tab-separated values
+            header=None,  # No headers in the file
             names=["year", "yield_value"],  # Correct column names
-            dtype={
-                "year": float,
-                "yield_value": float
-            },
-            na_values=-9999           # Replace sentinel values with NaN
+            dtype={"year": float, "yield_value": float},
+            na_values=-9999,  # Replace sentinel values with NaN
         )
         station_id = filename.split(".")[0]
         df["station_id"] = station_id
@@ -60,7 +58,9 @@ class CropYieldETL(ETLInterface):
         logging.info("Transforming crop yield data.")
         # Ensure correct data types
         data["year"] = pd.to_numeric(data["year"], errors="coerce").astype("int64")
-        data["yield_value"] = pd.to_numeric(data["yield_value"], errors="coerce").astype("float64")
+        data["yield_value"] = pd.to_numeric(
+            data["yield_value"], errors="coerce"
+        ).astype("float64")
 
         # Drop rows with all NaN values
         data.dropna(how="all", inplace=True)
@@ -68,7 +68,9 @@ class CropYieldETL(ETLInterface):
         # Remove duplicate records based on 'station_id' and 'year'
         data.drop_duplicates(subset=["station_id", "year"], inplace=True)
 
-        logging.info(f"Transformed crop yield data contains {len(data)} records after cleaning.")
+        logging.info(
+            f"Transformed crop yield data contains {len(data)} records after cleaning."
+        )
         return data
 
     async def load(self, data: pd.DataFrame) -> int:
@@ -90,23 +92,27 @@ class CropYieldETL(ETLInterface):
         for start in range(0, total_rows, self.batch_size):
             end = start + self.batch_size
             batch = rows_to_insert[start:end]
-            logging.info(f"Inserting crop yield rows {start + 1} to {min(end, total_rows)} into crop_yield_data.")
+            logging.info(
+                f"Inserting crop yield rows {start + 1} to {min(end, total_rows)} into crop_yield_data."
+            )
 
             stmt = insert(CropYieldData).values(batch)
 
             # Define the upsert behavior: do nothing on conflict
-            stmt = stmt.on_conflict_do_nothing(
-                index_elements=['station_id', 'year']
-            )
+            stmt = stmt.on_conflict_do_nothing(index_elements=["station_id", "year"])
 
             try:
                 result = await self.session.execute(stmt)
                 await self.session.commit()
                 inserted_rows += result.rowcount or len(batch)
-                logging.info(f"Inserted crop yield rows {start + 1} to {min(end, total_rows)} successfully.")
+                logging.info(
+                    f"Inserted crop yield rows {start + 1} to {min(end, total_rows)} successfully."
+                )
             except Exception as e:
                 await self.session.rollback()
-                logging.error(f"Error inserting crop yield rows {start + 1} to {min(end, total_rows)}: {e}")
+                logging.error(
+                    f"Error inserting crop yield rows {start + 1} to {min(end, total_rows)}: {e}"
+                )
                 raise e
 
         logging.info("Crop yield data loaded successfully.")
@@ -140,7 +146,7 @@ class CropYieldETL(ETLInterface):
         feedback = {
             "total_records": len(raw_data),
             "inserted_records": inserted_rows,
-            "time_taken": round(total_time, 2)  # Round to 2 decimal places
+            "time_taken": round(total_time, 2),  # Round to 2 decimal places
         }
         logging.info(f"ETL process completed: {feedback}")
         return feedback

@@ -9,6 +9,7 @@ import logging
 
 router = APIRouter()
 
+
 @router.get(
     "/weather",
     response_model=List[WeatherDataModel],
@@ -45,7 +46,9 @@ async def get_weather_data(
     end_date: str = Query(None, description="End date for filtering (YYYY-MM-DD)"),
     limit: int = Query(100, ge=1, le=1000, description="Number of records to return"),
     offset: int = Query(0, ge=0, description="Pagination offset"),
-    order_by: str = Query("date", description="Field to order by (e.g., date, max_temp)"),
+    order_by: str = Query(
+        "date", description="Field to order by (e.g., date, max_temp)"
+    ),
     order_direction: str = Query("asc", description="Order direction (asc or desc)"),
     session: AsyncSession = Depends(get_db),
 ):
@@ -54,7 +57,13 @@ async def get_weather_data(
     Retrieve raw weather data with optional filters, pagination, and sorting.
     """
     try:
-        query = select(column("station_id"), column("date"), column("max_temp"), column("min_temp"), column("precipitation")).select_from(text("weather_data"))
+        query = select(
+            column("station_id"),
+            column("date"),
+            column("max_temp"),
+            column("min_temp"),
+            column("precipitation"),
+        ).select_from(text("weather_data"))
 
         if station_id:
             query = query.where(column("station_id") == station_id)
@@ -66,19 +75,15 @@ async def get_weather_data(
         query = query.offset(offset).limit(limit)
         results = (await session.execute(query)).fetchall()
         return [
-          WeatherDataModel.from_row(row)  # Use the `from_row` method to handle serialization
-          for row in results
+            WeatherDataModel.from_row(
+                row
+            )  # Use the `from_row` method to handle serialization
+            for row in results
         ]
 
     except Exception as e:
         logging.error(f"Error retrieving weather data: {e}")
         raise HTTPException(status_code=500, detail="Internal server error.")
-
-
-
-
-
-
 
 
 @router.get(
@@ -141,7 +146,12 @@ async def get_weather_stats(
 
         # Convert rows into models while filtering out invalid float values
         def sanitize_float(value):
-            return value if value is not None and not (pd.isna(value) or value in [float('inf'), float('-inf')]) else None
+            return (
+                value
+                if value is not None
+                and not (pd.isna(value) or value in [float("inf"), float("-inf")])
+                else None
+            )
 
         return [
             WeatherStatsModel(

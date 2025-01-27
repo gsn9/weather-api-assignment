@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
+
 class WeatherDataModel(BaseModel):
     station_id: str
     date: str  # Keep this as a string for JSON serialization

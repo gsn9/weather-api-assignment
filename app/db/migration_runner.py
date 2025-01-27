@@ -2,6 +2,7 @@ import asyncio
 from alembic import command
 from alembic.config import Config
 
+
 async def run_migrations(alembic_ini_path: str):
     """
     Run Alembic migrations.

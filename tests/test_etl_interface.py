@@ -16,6 +16,7 @@ def test_etl_interface_requires_methods():
     """
     Test that any subclass of ETLInterface must implement the abstract methods.
     """
+
     class IncompleteETL(ETLInterface):
         def extract(self, file_content: bytes, filename: str):
             pass  # Implement only one method

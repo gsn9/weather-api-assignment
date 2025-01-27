@@ -41,11 +41,13 @@ class WeatherETL(ETLInterface):
                 "date": str,
                 "max_temp": float,
                 "min_temp": float,
-                "precipitation": float
+                "precipitation": float,
             },
-            na_values=-9999
+            na_values=-9999,
         )
-        df["station_id"] = filename.split(".")[0]  # Assuming station_id is the filename without extension
+        df["station_id"] = filename.split(".")[
+            0
+        ]  # Assuming station_id is the filename without extension
         logging.info(f"Extracted {len(df)} records from weather data.")
         return df
 
@@ -61,7 +63,7 @@ class WeatherETL(ETLInterface):
         """
         logging.info("Transforming weather data.")
         # Convert 'date' column to datetime
-        data["date"] = pd.to_datetime(data["date"], format="%Y%m%d", errors='coerce')
+        data["date"] = pd.to_datetime(data["date"], format="%Y%m%d", errors="coerce")
 
         # Scale temperature and precipitation values
         data["max_temp"] = data["max_temp"] / 10.0
@@ -74,7 +76,9 @@ class WeatherETL(ETLInterface):
         # Remove duplicate records based on 'station_id' and 'date'
         data.drop_duplicates(subset=["station_id", "date"], inplace=True)
 
-        logging.info(f"Transformed weather data contains {len(data)} records after cleaning.")
+        logging.info(
+            f"Transformed weather data contains {len(data)} records after cleaning."
+        )
         return data
 
     async def load(self, data: pd.DataFrame) -> int:
@@ -96,27 +100,33 @@ class WeatherETL(ETLInterface):
         for start in range(0, total_rows, self.batch_size):
             end = start + self.batch_size
             batch = rows_to_insert[start:end]
-            logging.info(f"Inserting rows {start + 1} to {min(end, total_rows)} into weather_data.")
+            logging.info(
+                f"Inserting rows {start + 1} to {min(end, total_rows)} into weather_data."
+            )
 
             stmt = insert(WeatherData).values(batch)
 
             # Define the upsert behavior: do nothing on conflict
-            stmt = stmt.on_conflict_do_nothing(
-                index_elements=['station_id', 'date']
-            )
+            stmt = stmt.on_conflict_do_nothing(index_elements=["station_id", "date"])
 
             try:
                 result = await self.session.execute(stmt)
                 # Use rowcount to track successful inserts
                 total_inserted += result.rowcount or 0
                 await self.session.commit()
-                logging.info(f"Inserted rows {start + 1} to {min(end, total_rows)} successfully.")
+                logging.info(
+                    f"Inserted rows {start + 1} to {min(end, total_rows)} successfully."
+                )
             except Exception as e:
                 await self.session.rollback()
-                logging.error(f"Error inserting rows {start + 1} to {min(end, total_rows)}: {e}")
+                logging.error(
+                    f"Error inserting rows {start + 1} to {min(end, total_rows)}: {e}"
+                )
                 raise e
 
-        logging.info(f"Weather data loaded successfully. Total inserted: {total_inserted}.")
+        logging.info(
+            f"Weather data loaded successfully. Total inserted: {total_inserted}."
+        )
         return total_inserted
 
     async def run_etl(self, file_content: bytes, filename: str) -> dict:
@@ -150,5 +160,5 @@ class WeatherETL(ETLInterface):
         return {
             "total_records": total_records,
             "inserted_records": inserted_records,
-            "time_taken": time_taken
+            "time_taken": time_taken,
         }

@@ -6,13 +6,12 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine
 from sqlalchemy import pool
 from alembic import context
 from dotenv import load_dotenv
-from app.db.schema import Base  
+from app.db.schema import Base
 
 # Load environment variables from the .env file
 load_dotenv()
 
 config = context.config
-
 
 
 if config.config_file_name is not None:
@@ -83,6 +82,7 @@ async def run_migrations_online():
         except Exception as e:
             print(f"Migration failed: {e}")
             raise  # Re-raise exception for debugging/logging
+
 
 if context.is_offline_mode():
     run_migrations_offline()

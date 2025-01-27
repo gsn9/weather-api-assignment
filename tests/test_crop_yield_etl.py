@@ -41,26 +41,33 @@ def test_crop_yield_etl_transform(crop_yield_etl):
     Test the transform method of CropYieldETL.
     """
     # Updated raw_data to use 'yield_value' and include 'station_id'
-    raw_data = pd.DataFrame({
-        "year": [2023, 2022],
-        "yield_value": [150, 145],
-        "station_id": ["station1", "station2"]
-    })
+    raw_data = pd.DataFrame(
+        {
+            "year": [2023, 2022],
+            "yield_value": [150, 145],
+            "station_id": ["station1", "station2"],
+        }
+    )
     transformed_data = crop_yield_etl.transform(raw_data)
     assert not transformed_data.empty
-    assert is_integer_dtype(transformed_data["year"])  # Check if column is integer dtype
+    assert is_integer_dtype(
+        transformed_data["year"]
+    )  # Check if column is integer dtype
     assert transformed_data["yield_value"].dtype == "float64"
+
 
 @pytest.mark.asyncio
 async def test_crop_yield_etl_load(crop_yield_etl):
     """
     Test the load method of CropYieldETL with mock data.
     """
-    transformed_data = pd.DataFrame({
-        "year": [2023, 2022],
-        "yield_value": [150.0, 145.0],  # Use yield_value instead of yield
-        "station_id": ["station1", "station2"]
-    })
+    transformed_data = pd.DataFrame(
+        {
+            "year": [2023, 2022],
+            "yield_value": [150.0, 145.0],  # Use yield_value instead of yield
+            "station_id": ["station1", "station2"],
+        }
+    )
 
     await crop_yield_etl.load(transformed_data)
 

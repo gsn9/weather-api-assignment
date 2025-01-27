@@ -32,20 +32,28 @@ def test_weather_etl_extract(weather_etl, weather_file_content):
     df = weather_etl.extract(weather_file_content, "USC00110072.txt")
     assert isinstance(df, pd.DataFrame)
     assert not df.empty
-    assert df.columns.tolist() == ["date", "max_temp", "min_temp", "precipitation", "station_id"]
+    assert df.columns.tolist() == [
+        "date",
+        "max_temp",
+        "min_temp",
+        "precipitation",
+        "station_id",
+    ]
 
 
 def test_weather_etl_transform(weather_etl):
     """
     Test the transform method of WeatherETL.
     """
-    raw_data = pd.DataFrame({
-        "date": ["20230101", "20230102"],
-        "max_temp": [100, 110],
-        "min_temp": [-50, -40],
-        "precipitation": [5, 0],
-        "station_id": ["USC00110072", "USC00110072"]
-    })
+    raw_data = pd.DataFrame(
+        {
+            "date": ["20230101", "20230102"],
+            "max_temp": [100, 110],
+            "min_temp": [-50, -40],
+            "precipitation": [5, 0],
+            "station_id": ["USC00110072", "USC00110072"],
+        }
+    )
     transformed_data = weather_etl.transform(raw_data)
     assert not transformed_data.empty
     assert "date" in transformed_data.columns
@@ -58,13 +66,15 @@ async def test_weather_etl_load(weather_etl):
     """
     Test the load method of WeatherETL with mock data.
     """
-    transformed_data = pd.DataFrame({
-        "date": pd.to_datetime(["2023-01-01", "2023-01-02"]),
-        "max_temp": [10.0, 11.0],
-        "min_temp": [-5.0, -4.0],
-        "precipitation": [0.5, 0.0],
-        "station_id": ["USC00110072", "USC00110072"]
-    })
+    transformed_data = pd.DataFrame(
+        {
+            "date": pd.to_datetime(["2023-01-01", "2023-01-02"]),
+            "max_temp": [10.0, 11.0],
+            "min_temp": [-5.0, -4.0],
+            "precipitation": [0.5, 0.0],
+            "station_id": ["USC00110072", "USC00110072"],
+        }
+    )
 
     await weather_etl.load(transformed_data)
 

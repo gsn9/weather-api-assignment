@@ -11,9 +11,8 @@ class MigrationResponse(BaseModel):
     message: str
 
     class Config:
-        schema_extra = {
-            "example": {"message": "Migrations ran successfully."}
-        }
+        schema_extra = {"example": {"message": "Migrations ran successfully."}}
+
 
 @router.post(
     "/migrate",
