@@ -2,6 +2,8 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 import os
+from app.db.schema import Base
+
 
 load_dotenv()
 
@@ -36,3 +38,8 @@ async def get_db() -> AsyncSession:
             raise e
         finally:
             await session.close()
+
+
+async def init_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)

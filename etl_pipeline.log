@@ -1,0 +1,30 @@
+2025-01-26 18:10:36,794 [INFO] Received file upload: USC00338552.txt
+2025-01-26 18:10:36,801 [INFO] Extracting weather data from file: USC00338552.txt
+2025-01-26 18:10:36,809 [INFO] Extracted 10896 records from weather data.
+2025-01-26 18:10:36,809 [INFO] Transforming weather data.
+2025-01-26 18:10:36,819 [INFO] Transformed weather data contains 10896 records after cleaning.
+2025-01-26 18:10:36,819 [INFO] Loading weather data into the database.
+2025-01-26 18:10:36,828 [INFO] Total rows to insert: 10896
+2025-01-26 18:10:36,828 [INFO] Inserting rows 1 to 5000 into weather_data.
+2025-01-26 18:10:37,022 [INFO] Received file upload: USC00338552.txt
+2025-01-26 18:10:37,023 [INFO] Extracting weather data from file: USC00338552.txt
+2025-01-26 18:10:37,026 [INFO] Extracted 10896 records from weather data.
+2025-01-26 18:10:37,026 [INFO] Transforming weather data.
+2025-01-26 18:10:37,029 [INFO] Transformed weather data contains 10896 records after cleaning.
+2025-01-26 18:10:37,029 [INFO] Loading weather data into the database.
+2025-01-26 18:10:37,037 [INFO] Total rows to insert: 10896
+2025-01-26 18:10:37,037 [INFO] Inserting rows 1 to 5000 into weather_data.
+2025-01-26 18:10:37,347 [INFO] Inserted rows 1 to 5000 successfully.
+2025-01-26 18:10:37,347 [INFO] Inserting rows 5001 to 10000 into weather_data.
+2025-01-26 18:10:37,544 [INFO] Inserted rows 1 to 5000 successfully.
+2025-01-26 18:10:37,544 [INFO] Inserting rows 5001 to 10000 into weather_data.
+2025-01-26 18:10:37,744 [INFO] Inserted rows 5001 to 10000 successfully.
+2025-01-26 18:10:37,744 [INFO] Inserting rows 10001 to 10896 into weather_data.
+2025-01-26 18:10:37,786 [INFO] Inserted rows 5001 to 10000 successfully.
+2025-01-26 18:10:37,786 [INFO] Inserting rows 10001 to 10896 into weather_data.
+2025-01-26 18:10:37,817 [INFO] Inserted rows 10001 to 10896 successfully.
+2025-01-26 18:10:37,817 [INFO] Weather data loaded successfully.
+2025-01-26 18:10:37,817 [INFO] File 'USC00338552.txt' processed successfully.
+2025-01-26 18:10:37,829 [INFO] Inserted rows 10001 to 10896 successfully.
+2025-01-26 18:10:37,829 [INFO] Weather data loaded successfully.
+2025-01-26 18:10:37,831 [INFO] File 'USC00338552.txt' processed successfully.

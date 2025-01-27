@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from starlette.status import HTTP_403_FORBIDDEN
-from db.migration_runner import run_migrations
+from app.db.migration_runner import run_migrations
 import os
 
 router = APIRouter()

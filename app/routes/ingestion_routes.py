@@ -1,14 +1,13 @@
 # routes.py
 from fastapi import APIRouter, File, UploadFile, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from db.database import get_db  # Ensure this is your dependency for the database session
 import pandas as pd
 import io
 import logging
 
-from .etl_interface import ETLInterface
-from .impl_weather_etl import WeatherETL
-from .impl_crop_yield_etl import CropYieldETL
+from app.etl.impl_weather_etl import WeatherETL
+from app.etl.impl_crop_yield_etl import CropYieldETL
+from app.db.database import get_db
 
 router = APIRouter()
 

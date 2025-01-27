@@ -3,8 +3,8 @@ import pandas as pd
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.dialects.postgresql import insert
 import logging
-from .etl_interface import ETLInterface
-from db.schema import WeatherData
+from app.etl.etl_interface import ETLInterface
+from app.db.schema import WeatherData
 
 class WeatherETL(ETLInterface):
     def __init__(self, session: AsyncSession, batch_size: int = 5000):
