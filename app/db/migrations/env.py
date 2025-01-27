@@ -5,8 +5,8 @@ from logging.config import fileConfig
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine
 from sqlalchemy import pool
 from alembic import context
-from dotenv import load_dotenv  # To load the .env file
-from db.schema import Base  # Import the Base from your schema
+from dotenv import load_dotenv
+from app.db.schema import Base  
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -57,7 +57,7 @@ async def run_migrations_online():
     connectable: AsyncEngine = create_async_engine(
         database_url,
         poolclass=pool.NullPool,
-        echo=True,  # Enable SQL debugging logs
+        echo=False,  # Enable SQL debugging logs
     )
 
     # Connect and configure the context
