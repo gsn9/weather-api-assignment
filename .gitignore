@@ -5,3 +5,5 @@ venv/
 .vim/
 .vscode/
 .mypy_cache/
+.DS
+.DS_Store
