@@ -1,0 +1,12 @@
+[project]
+name = "weather-api-assignment"
+
+# Service Definitions
+[[services]]
+name = "weather-api"
+start = "uvicorn app.main:app --host 0.0.0.0 --port $PORT" # Command to start the API
+env = "python"                                            # Specify the environment (Python)
+
+[[services]]
+name = "postgres"
+start = "docker run postgres:13"                          # Optional for custom Postgres setups
