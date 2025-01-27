@@ -4,6 +4,7 @@ from sqlalchemy import select, func, column, text
 from app.db.database import get_db
 from app.models.weather import WeatherDataModel, WeatherStatsModel
 from typing import List
+import pandas as pd
 import logging
 
 router = APIRouter()
@@ -64,16 +65,9 @@ async def get_weather_data(
 
         query = query.offset(offset).limit(limit)
         results = (await session.execute(query)).fetchall()
-
         return [
-            WeatherDataModel(
-                station_id=row.station_id,
-                date=row.date,
-                max_temp=row.max_temp,
-                min_temp=row.min_temp,
-                precipitation=row.precipitation,
-            )
-            for row in results
+          WeatherDataModel.from_row(row)  # Use the `from_row` method to handle serialization
+          for row in results
         ]
 
     except Exception as e:
@@ -145,13 +139,17 @@ async def get_weather_stats(
         query = query.offset(offset).limit(limit)
         results = (await session.execute(query)).fetchall()
 
+        # Convert rows into models while filtering out invalid float values
+        def sanitize_float(value):
+            return value if value is not None and not (pd.isna(value) or value in [float('inf'), float('-inf')]) else None
+
         return [
             WeatherStatsModel(
                 station_id=row.station_id,
                 year=row.year,
-                avg_max_temp=row.avg_max_temp,
-                avg_min_temp=row.avg_min_temp,
-                total_precipitation=row.total_precipitation,
+                avg_max_temp=sanitize_float(row.avg_max_temp),
+                avg_min_temp=sanitize_float(row.avg_min_temp),
+                total_precipitation=sanitize_float(row.total_precipitation),
             )
             for row in results
         ]
