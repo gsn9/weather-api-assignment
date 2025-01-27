@@ -9,7 +9,7 @@ This project is a FastAPI-based Weather API designed to handle weather and crop 
 
 
 The application is live and hosted via Railway.  
-Access it here: [Weather API](https://accomplished-energy-production.up.railway.app/docs)
+Access it here: [Weather API](https://weather-api-assignment-production.up.railway.app/docs)
 
 
 ## Table of Contents
@@ -120,7 +120,7 @@ weather-api-assignment/
    ```
 
 6. Access the API at:
-   - Swagger UI: [https://accomplished-energy-production.up.railway.app/docs#/](https://accomplished-energy-production.up.railway.app/docs#/)
+   - Swagger UI: [https://weather-api-assignment-production.up.railway.app/docs#/](https://weather-api-assignment-production.up.railway.app/docs#/)
 ---
 
 ## Environment Variables

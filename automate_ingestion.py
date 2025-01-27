@@ -15,7 +15,7 @@ logging.basicConfig(
 
 # Configuration
 # DEFAULT_API_URL = "http://localhost:8000/api/upload_file"  # Update if different
-DEFAULT_API_URL = "https://accomplished-energy-production.up.railway.app/api/upload_file"
+DEFAULT_API_URL = "https://weather-api-assignment-production.up.railway.app/api/upload_file"
 DEFAULT_DATA_DIR = Path(
     "/Users/gavinnelson/coderepos/weather-api-assignment/data/wx_data"
 )  # Adjust the path as needed
