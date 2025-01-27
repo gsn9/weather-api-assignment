@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from app.routes.ingestion_routes import router as ingestion_router
 from app.routes.migrations_routes import router as migration_router
+from app.routes.weather_routes import router as weather_router
 from app.db.database import init_db
 from app.utils.logger import setup_logging
 
@@ -17,3 +18,4 @@ async def on_startup():
 # Include routers
 app.include_router(ingestion_router, prefix="/api")
 app.include_router(migration_router, prefix="/api")
+app.include_router(weather_router, prefix="/api")
