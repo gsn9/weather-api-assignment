@@ -1,10 +1,10 @@
-# impl_crop_yield_etl.py
 import pandas as pd
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.dialects.postgresql import insert
 import logging
 from app.etl.etl_interface import ETLInterface
 from app.db.schema import CropYieldData
+import time
 
 class CropYieldETL(ETLInterface):
     def __init__(self, session: AsyncSession, batch_size: int = 5000):
@@ -57,7 +57,6 @@ class CropYieldETL(ETLInterface):
         Returns:
             pd.DataFrame: Cleaned crop yield data without duplicates.
         """
-
         logging.info("Transforming crop yield data.")
         # Ensure correct data types
         data["year"] = pd.to_numeric(data["year"], errors="coerce").astype("int64")
@@ -72,17 +71,20 @@ class CropYieldETL(ETLInterface):
         logging.info(f"Transformed crop yield data contains {len(data)} records after cleaning.")
         return data
 
-
-    async def load(self, data: pd.DataFrame):
+    async def load(self, data: pd.DataFrame) -> int:
         """
         Load transformed crop yield data into the database using batch inserts with upsert.
 
         Args:
             data (pd.DataFrame): Transformed crop yield data.
+
+        Returns:
+            int: The number of rows successfully inserted.
         """
         logging.info("Loading crop yield data into the database.")
         rows_to_insert = data.to_dict(orient="records")
         total_rows = len(rows_to_insert)
+        inserted_rows = 0
         logging.info(f"Total crop yield rows to insert: {total_rows}")
 
         for start in range(0, total_rows, self.batch_size):
@@ -98,8 +100,9 @@ class CropYieldETL(ETLInterface):
             )
 
             try:
-                await self.session.execute(stmt)
+                result = await self.session.execute(stmt)
                 await self.session.commit()
+                inserted_rows += result.rowcount or len(batch)
                 logging.info(f"Inserted crop yield rows {start + 1} to {min(end, total_rows)} successfully.")
             except Exception as e:
                 await self.session.rollback()
@@ -107,3 +110,37 @@ class CropYieldETL(ETLInterface):
                 raise e
 
         logging.info("Crop yield data loaded successfully.")
+        return inserted_rows
+
+    async def run_etl(self, file_content: bytes, filename: str) -> dict:
+        """
+        Run the ETL process: Extract, Transform, and Load.
+
+        Args:
+            file_content (bytes): Binary content of the uploaded file.
+            filename (str): Name of the uploaded file.
+
+        Returns:
+            dict: Feedback about the ETL process (e.g., total records, inserted records, time taken).
+        """
+        start_time = time.time()
+
+        # Extract
+        raw_data = self.extract(file_content, filename)
+
+        # Transform
+        transformed_data = self.transform(raw_data)
+
+        # Load
+        inserted_rows = await self.load(transformed_data)
+
+        # Calculate total time taken
+        total_time = time.time() - start_time
+
+        feedback = {
+            "total_records": len(raw_data),
+            "inserted_records": inserted_rows,
+            "time_taken": round(total_time, 2)  # Round to 2 decimal places
+        }
+        logging.info(f"ETL process completed: {feedback}")
+        return feedback

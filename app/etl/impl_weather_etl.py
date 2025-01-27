@@ -1,10 +1,11 @@
-# impl_weather_etl.py
+import time  # Added for tracking time
 import pandas as pd
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.dialects.postgresql import insert
 import logging
 from app.etl.etl_interface import ETLInterface
 from app.db.schema import WeatherData
+
 
 class WeatherETL(ETLInterface):
     def __init__(self, session: AsyncSession, batch_size: int = 5000):
@@ -76,15 +77,19 @@ class WeatherETL(ETLInterface):
         logging.info(f"Transformed weather data contains {len(data)} records after cleaning.")
         return data
 
-    async def load(self, data: pd.DataFrame):
+    async def load(self, data: pd.DataFrame) -> int:
         """
         Load transformed weather data into the database using batch inserts with upsert.
 
         Args:
             data (pd.DataFrame): Transformed weather data.
+
+        Returns:
+            int: Total number of records successfully inserted.
         """
         logging.info("Loading weather data into the database.")
         rows_to_insert = data.to_dict(orient="records")
+        total_inserted = 0
         total_rows = len(rows_to_insert)
         logging.info(f"Total rows to insert: {total_rows}")
 
@@ -101,7 +106,9 @@ class WeatherETL(ETLInterface):
             )
 
             try:
-                await self.session.execute(stmt)
+                result = await self.session.execute(stmt)
+                # Use rowcount to track successful inserts
+                total_inserted += result.rowcount or 0
                 await self.session.commit()
                 logging.info(f"Inserted rows {start + 1} to {min(end, total_rows)} successfully.")
             except Exception as e:
@@ -109,4 +116,39 @@ class WeatherETL(ETLInterface):
                 logging.error(f"Error inserting rows {start + 1} to {min(end, total_rows)}: {e}")
                 raise e
 
-        logging.info("Weather data loaded successfully.")
+        logging.info(f"Weather data loaded successfully. Total inserted: {total_inserted}.")
+        return total_inserted
+
+    async def run_etl(self, file_content: bytes, filename: str) -> dict:
+        """
+        Run the ETL process: extract, transform, and load weather data.
+
+        Args:
+            file_content (bytes): Binary content of the uploaded file.
+            filename (str): Name of the uploaded file.
+
+        Returns:
+            dict: Summary of the ETL process, including total records, inserted records, and time taken.
+        """
+        start_time = time.time()  # Start tracking time
+
+        # Extract
+        raw_data = self.extract(file_content, filename)
+        total_records = len(raw_data)
+
+        # Transform
+        transformed_data = self.transform(raw_data)
+
+        # Load
+        inserted_records = await self.load(transformed_data)
+
+        # Calculate time taken
+        end_time = time.time()
+        time_taken = round(end_time - start_time, 2)
+
+        # Return summary
+        return {
+            "total_records": total_records,
+            "inserted_records": inserted_records,
+            "time_taken": time_taken
+        }

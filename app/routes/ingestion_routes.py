@@ -1,4 +1,3 @@
-# routes.py
 from fastapi import APIRouter, File, UploadFile, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 import pandas as pd
@@ -25,7 +24,6 @@ async def upload_file(
     content = await file.read()  # Read raw content here
 
     # Determine the file type based on the number of columns
-    # For this example, we'll read a small portion to infer the type
     try:
         buffer = io.BytesIO(content)
         # Read the first few lines to determine the structure
@@ -52,12 +50,18 @@ async def upload_file(
         logging.error("Unknown file structure based on column count.")
         raise HTTPException(status_code=400, detail="Unknown file structure.")
 
+    # Run the ETL process and capture the feedback
+    try:
+        feedback = await etl_class.run_etl(content, file.filename)
+    except Exception as e:
+        logging.error(f"ETL process failed: {e}")
+        raise HTTPException(status_code=500, detail="Failed to process the file.")
 
-        # Run the ETL process
-    await etl_class.run_etl(content, file.filename)
-    # except Exception as e:
-    #     logging.error(f"ETL process failed: {e}")
-    #     raise HTTPException(status_code=500, detail="Failed to process the file.")
-
+    # Log success
     logging.info(f"File '{file.filename}' processed successfully.")
-    return {"message": f"File '{file.filename}' processed successfully."}
+
+    # Return feedback to the user
+    return {
+        "message": f"File '{file.filename}' processed successfully.",
+        "details": feedback
+    }
